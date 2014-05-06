@@ -765,7 +765,8 @@ DEBUG_FINALIZE();
 		if (error) {
 			returnError = error;
 		} else {
-			[self message:@"%@: wrote %lu byte", normalizedURL, [data length]];
+			NSString *byteOrBytes = [data length] == 1 ? @"byte" : @"bytes";
+			[self message:@"%@: wrote %lu %@", normalizedURL, [data length], byteOrBytes];
 			if (saveOperation == NSSaveOperation || saveOperation == NSSaveAsOperation) {
 				DEBUG(@"setting normalized URL %@", normalizedURL);
 				[self setFileURL:normalizedURL];
